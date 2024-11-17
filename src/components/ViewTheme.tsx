@@ -1,5 +1,5 @@
 // import { RootState } from "@/store/store";
-import React, { ReactElement, useEffect, useState } from "react";
+import React, {  useEffect, useState } from "react";
 import Cards from "./Cards";
 import { FaUser, FaPalette, FaThumbsUp, FaThumbsDown } from 'react-icons/fa';
 import { RootState } from "@/store/store";

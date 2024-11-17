@@ -1,5 +1,5 @@
 "use client";
-import { useCallback, useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 import { LuAlignJustify } from "react-icons/lu";
 import { IoIosAdd, IoMdEye } from "react-icons/io";
 import Image from "next/image";
