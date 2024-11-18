@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { SketchPicker } from 'react-color'; 
 import Color from '../../public/images/colors.png'
 import Image from 'next/image';
