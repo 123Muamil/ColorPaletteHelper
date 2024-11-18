@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { SketchPicker } from 'react-color'; 
 import Color from '../../public/images/colors.png'
 import Image from 'next/image';
@@ -9,6 +9,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { createTheme } from '@/reducers/themeSlice';
 import { setComponent } from '@/reducers/componentSlice';
 import { ColorResult } from 'react-color'; // If you're using react-color
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 const fonts = [
     'Arial',
@@ -61,6 +62,9 @@ const AddTheme: React.FC = () => {
    const [isOpenButtonBackgroundColor,setIsOpenButtonBackgroundColor]=useState(false)
    const [isOpenButtonTextColor,setIsOpenButtonTextColor]=useState(false)
    const [isOpenLinkColor,setIsOpenLinkColor]=useState(false)
+   const router = useRouter();
+   const pathname = usePathname();
+   const searchParams = useSearchParams();
    const handleChangeBackgroundColor = (color:ColorResult) => {
     setBackGroundColor(color.hex)
   };
@@ -174,7 +178,14 @@ const AddTheme: React.FC = () => {
     }
     dispatch(createTheme(data))
     dispatch(setComponent('ViewTheme'))
+    updateSearchParam('View');
   }
+  const updateSearchParam = (value: string) => {
+    const newParams = new URLSearchParams(searchParams.toString());
+    newParams.set('view', value);
+    router.push(pathname + '?' + newParams.toString());
+  };
+
   return <div className="grid grid-cols-1 md:grid-cols-2 gap-4"> 
   <div className="col-span-1">
      {/* Add Theme Name */}

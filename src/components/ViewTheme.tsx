@@ -3,7 +3,9 @@ import React, {  useEffect, useState } from "react";
 import Cards from "./Cards";
 import { FaUser, FaPalette, FaThumbsUp, FaThumbsDown } from 'react-icons/fa';
 import { RootState } from "@/store/store";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setComponent } from "@/reducers/componentSlice";
+import { useSearchParams } from "next/navigation";
 
 interface SearchDataItem {
   id: string;
@@ -32,6 +34,16 @@ const ViewTheme: React.FC<ViewThemeProps> = ({ searchData }) => {
   const [id,setId]=useState<string>('')
   const themes=useSelector((state:RootState)=>state.theme.data)
   const currentTheme=themes.find((currentTheme)=>currentTheme.id===id)
+  const searchParams = useSearchParams();
+  const dispatch=useDispatch()
+  useEffect(() => {
+    const queryParam = searchParams.get('view');
+    if (queryParam === 'Create') {
+      dispatch(setComponent('AddTheme'));
+    } else if (queryParam === 'View') {
+      dispatch(setComponent('ViewTheme'));
+    }
+  }, [searchParams, dispatch]);
   useEffect(()=>{
     setCardData([
       {
