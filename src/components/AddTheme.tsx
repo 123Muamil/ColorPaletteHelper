@@ -48,7 +48,7 @@ const AddTheme: React.FC = () => {
     const dispatch=useDispatch()
    const [themeName,setThemeName]=useState('Software Engineer')
    const [themeDescription,setThemeDescription]=useState(ThemeDescription)
-   const [linkName,setLinkName]=useState('https://123muamil.github.io/Muzamil-Iqbal/')
+   const [linkName,setLinkName]=useState<string>('https://123muamil.github.io/Muzamil-Iqbal/')
    const [selectedFont, setSelectedFont] = useState('Arial'); // Default font
    const [backgroundColor,setBackGroundColor]=useState('#FFFFFF')
    const [textColor,setTextColor]=useState('#333')
@@ -174,7 +174,8 @@ const AddTheme: React.FC = () => {
         linkColor:linkColor,
         font:selectedFont,
         textColor:textColor,
-        descriptionColor:descriptionColor
+        descriptionColor:descriptionColor,
+        link:linkName,
     }
     dispatch(createTheme(data))
     dispatch(setComponent('ViewTheme'))

@@ -10,6 +10,7 @@ interface ThemeData {
   buttonTextColor: string;
   linkColor: string;
   font: string;
+  link:string;
 }
 interface ThemeState {
   data: ThemeData[];
@@ -35,6 +36,7 @@ const themeSlice = createSlice({
         buttonTextColor,
         linkColor,
         font,
+        link
       } = action.payload;
       state.data.push({
         id,
@@ -47,10 +49,17 @@ const themeSlice = createSlice({
         buttonTextColor,
         linkColor,
         font,
+        link
       });
+    },
+    deleteById(state, action: PayloadAction<string>) {
+      const id = action.payload; // Get the ID from the action payload
+      console.log("the payload is:",action.payload)
+      const filterData = state.data.filter((item) => item.id !== id);
+      state.data = filterData;
     },
   },
 });
 
-export const { createTheme } = themeSlice.actions;
+export const { createTheme,deleteById } = themeSlice.actions;
 export default themeSlice.reducer;

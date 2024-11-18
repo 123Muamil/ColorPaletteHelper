@@ -98,7 +98,7 @@ const Dashboard = () => {
   let component;
   switch (currentComponent) {
     case 'ViewTheme':
-      component = <ViewTheme searchData={searchData} />;
+      component = <ViewTheme searchData={searchData}  />;
       break;
     case 'AddTheme':
     default:
